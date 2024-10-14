@@ -1,0 +1,38 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+% Title and author information
+\title{Nghiên cứu về Thuật toán Cây Quyết Định cho Phân Loại}
+\author{Tên của bạn}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Báo cáo này khám phá các nguyên lý cơ bản và ứng dụng của thuật toán Cây quyết định trong các bài toán phân loại. Cây quyết định được sử dụng rộng rãi trong học máy nhờ khả năng giải thích dễ dàng và khả năng xử lý cả dữ liệu số lẫn dữ liệu phân loại. Báo cáo này đề cập đến việc xây dựng cây quyết định, tiêu chí phân chia, tầm quan trọng của đặc trưng, và các kỹ thuật chống overfitting.
+\end{abstract}
+
+\section{Giới thiệu}
+Cây quyết định là mô hình học có giám sát được sử dụng cho cả bài toán phân loại và hồi quy. Cấu trúc của nó giống một cái cây, với các nút bên trong đại diện cho các quyết định dựa trên đặc trưng đầu vào, các nhánh biểu thị kết quả của các quyết định đó, và các lá đại diện cho nhãn lớp hoặc giá trị hồi quy. Khả năng trực quan hóa quy trình ra quyết định khiến Cây quyết định trở thành lựa chọn phổ biến cho các mô hình học máy dễ giải thích.
+
+\section{Tổng quan Thuật toán}
+Thuật toán Cây quyết định sử dụng phương pháp phân chia đệ quy để chia tập dữ liệu thành các tập con đồng nhất hơn với biến mục tiêu. Mục tiêu chính là tối đa hóa độ tinh khiết của các tập con kết quả. Các chỉ số phổ biến để đánh giá chất lượng của một phân chia là:
+
+\begin{itemize}
+    \item \textbf{Chỉ số Gini}: Đo lường độ nhiễm bẩn, thường được sử dụng trong CART (Classification and Regression Trees).
+    \item \textbf{Entropy}: Đo lường độ tăng thông tin, thường được sử dụng trong các thuật toán ID3 và C4.5.
+\end{itemize}
+
+\section{Xây dựng Cây Quyết Định}
+Quá trình xây dựng cây quyết định bắt đầu bằng việc chọn đặc trưng tốt nhất để chia tập dữ liệu. Đặc trưng tốt nhất được xác định bằng cách đánh giá tất cả các đặc trưng và chọn đặc trưng cung cấp độ tăng thông tin cao nhất hoặc độ nhiễm bẩn thấp nhất sau khi chia. Việc chia tiếp tục cho đến khi đạt điều kiện dừng, như độ sâu tối đa của cây hoặc ngưỡng nhiễm bẩn tối thiểu.
+
+\section{Tầm Quan Trọng của Đặc Trưng}
+Cây quyết định tự nhiên cung cấp các điểm số tầm quan trọng của đặc trưng, giúp xác định đặc trưng nào đóng góp nhiều nhất cho dự đoán. Tầm quan trọng của một đặc trưng được tính dựa trên mức giảm nhiễm bẩn mà nó cung cấp khi được sử dụng để chia dữ liệu. Các đặc trưng có điểm số tầm quan trọng cao hơn được coi là có ảnh hưởng nhiều hơn.
+
+\section{Cắt Tỉa và Overfitting}
+Một trong những thách thức với Cây quyết định là overfitting. Overfitting xảy ra khi cây trở nên quá phức tạp và nắm bắt nhiễu trong dữ liệu huấn luyện thay vì mẫu chung. Để tránh overfitting, các kỹ thuật \textbf{cắt tỉa (pruning)} được áp dụng. Cắt tỉa có thể được thực hiện bằng cách đặt các tham số như \texttt{max\_depth}, \texttt{min\_samples\_split}, hoặc \texttt{min\_impurity\_decrease} để giới hạn sự phát triển của cây.
